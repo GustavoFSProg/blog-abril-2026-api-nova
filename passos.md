@@ -19,6 +19,7 @@ npm install -D typescript ts-node-dev @types/node @types/express
   }
 }
 
+---------
 
 5 - na src/index.ts
 
