@@ -112,22 +112,22 @@ async function deletePost(req: Request, res: Response) {
 
 async function Likes(req: Request, res: Response) {
   try {
-    const dados = await prismaDB.posts.findFirst({
+    const data = await prismaDB.posts.findFirst({
       where: { id: req.params.id },
     });
 
-    if (!dados) {
+    if (!data) {
       return res.json({ msg: "Post não encontrado!" });
     }
 
     await prismaDB.posts.update({
       where: { id: req.params.id },
       data: {
-        likes: (dados.likes ?? 0) + 1,
+        likes: (data.likes ?? 0) + 1,
       },
     });
 
-    return res.json({ msg: "Like registrado!", DADOS: dados.likes });
+    return res.json(data);
   } catch (error) {
     return res.status(400).json({ error: "Failed to delete post" });
   }
