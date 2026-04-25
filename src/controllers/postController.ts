@@ -61,7 +61,7 @@ async function updatePost(req: Request, res: Response) {
     console.log(secure_url);
 
     const post = await prismaDB.posts.update({
-      where: { id: req.params.id },
+      where: { id: req.params.id } as any,
       data: {
         title: req.body.title,
         image: secure_url,
@@ -91,7 +91,7 @@ async function getPosts(req: Request, res: Response) {
 async function getOnePost(req: Request, res: Response) {
   try {
     const data = await prismaDB.posts.findFirst({
-      where: { id: req.params.id },
+      where: { id: req.params.id } as any,
     });
     return res.json(data);
   } catch (error) {
@@ -102,7 +102,7 @@ async function getOnePost(req: Request, res: Response) {
 async function deletePost(req: Request, res: Response) {
   try {
     const data = await prismaDB.posts.delete({
-      where: { id: req.params.id },
+      where: { id: req.params.id } as any,
     });
     return res.json({ msg: "Post deletado com sucesso!", data });
   } catch (error) {
@@ -113,7 +113,7 @@ async function deletePost(req: Request, res: Response) {
 async function Likes(req: Request, res: Response) {
   try {
     const data = await prismaDB.posts.findFirst({
-      where: { id: req.params.id },
+      where: { id: req.params.id } as any,
     });
 
     if (!data) {
@@ -121,7 +121,7 @@ async function Likes(req: Request, res: Response) {
     }
 
     await prismaDB.posts.update({
-      where: { id: req.params.id },
+      where: { id: req.params.id } as any,
       data: {
         likes: (data.likes ?? 0) + 1,
       },
@@ -135,22 +135,22 @@ async function Likes(req: Request, res: Response) {
 
 async function Views(req: Request, res: Response) {
   try {
-    const dados = await prismaDB.posts.findFirst({
-      where: { id: req.params.id },
+    const data = await prismaDB.posts.findFirst({
+      where: { id: req.params.id } as any,
     });
 
-    if (!dados) {
+    if (!data) {
       return res.json({ msg: "Post não encontrado!" });
     }
 
     await prismaDB.posts.update({
-      where: { id: req.params.id },
+      where: { id: req.params.id } as any,
       data: {
-        views: (dados.views ?? 0) + 1,
+        views: (data.views ?? 0) + 1,
       },
     });
 
-    return res.json({ msg: "View registrada!", DADOS: dados.views });
+    return res.json(data);
   } catch (error) {
     return res.status(400).json({ error: "Failed to delete post" });
   }
