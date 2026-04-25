@@ -134,7 +134,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/oem/dev/BLOG-abril-2026/API/src/generated/prisma",
+      "value": "/home/oem/dev/BLOG-abril-2026/API-FOR-VERCEL/blog-abril-2026-api-nova/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -148,7 +148,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/oem/dev/BLOG-abril-2026/API/prisma/schema.prisma",
+    "sourceFilePath": "/home/oem/dev/BLOG-abril-2026/API-FOR-VERCEL/blog-abril-2026-api-nova/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -162,17 +162,16 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": "DATABASE_URL",
+        "fromEnvVar": "DATABASE_POSTGRES_RENDER",
         "value": null
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Posts {\n  id          String @id @default(uuid())\n  image       String\n  title       String\n  text        String\n  description String\n  likes       Int?   @default(0)\n  views       Int?   @default(0)\n  author      String\n\n  createdAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "7175a1b94d435903a55ec903dc94390285b1642d0f26d64e04ea4662e1c15167",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_POSTGRES_RENDER\")\n}\n\nmodel Posts {\n  id          String @id @default(uuid())\n  image       String\n  title       String\n  text        String\n  description String\n  likes       Int?   @default(0)\n  views       Int?   @default(0)\n  author      String\n\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "c01dd245bf2b055eaafd364e97cf6cc299cd5a06d39e33d9694b35852c209209",
   "copyEngine": true
 }
 config.dirname = '/'
@@ -184,7 +183,7 @@ config.compilerWasm = undefined
 
 config.injectableEdgeEnv = () => ({
   parsed: {
-    DATABASE_URL: typeof globalThis !== 'undefined' && globalThis['DATABASE_URL'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_URL || undefined
+    DATABASE_POSTGRES_RENDER: typeof globalThis !== 'undefined' && globalThis['DATABASE_POSTGRES_RENDER'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_POSTGRES_RENDER || undefined
   }
 })
 
